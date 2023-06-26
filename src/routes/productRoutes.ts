@@ -7,8 +7,9 @@ router.get('/getProduct', (req, res, next) => {
     controller.getProduct(req, res)
 });
 
-router.get('/getProductById', (req, res, next) => {
+router.get('/getProductById/:id', (req, res, next) => {
     controller.getProduct(req, res)
 });
 
 
+export default router;
