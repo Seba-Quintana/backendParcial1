@@ -5,7 +5,7 @@ import { NextFunction, Request, Response } from 'express';
 
 // writeFile function with filename, content and callback function
 
-const getUser = async (req: Request, res: Response) => {
+const getProduct = async (req: Request, res: Response) => {
 
 	try {
 		// Get the person with the specified ID
@@ -21,3 +21,5 @@ const getUser = async (req: Request, res: Response) => {
 		res.status(500).json({ error: err?.message });
 	}
 };
+
+export default {getProduct };
