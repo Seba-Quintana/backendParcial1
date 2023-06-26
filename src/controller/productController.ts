@@ -44,8 +44,8 @@ const getProduct = async (req: Request, res: Response) => {
       });
       const response: IResponse<any[]> = {
         Result: {
-          statuscode: "",
-          statustext: "",
+          statuscode: "200",
+          statustext: "OK",
         },
         data: prods,
       };
@@ -53,8 +53,16 @@ const getProduct = async (req: Request, res: Response) => {
       res.status(200);
       res.json(response);
     } else {
+      const response: IResponse<any[]> = {
+        Result: {
+          statuscode: "404",
+          statustext: "NOT FOUND",
+        },
+        data: []
+      };
+
       res.status(404);
-    }
+      res.json(response);    }
   } catch (err) {
     res.status(500).json({ error: err?.message });
   }
