@@ -16,12 +16,11 @@ import { IProductDetails } from '../interfaces/IProductDetails';
 })
 export class HomePage {
   private data = inject(DataService);
-  response!: IResponse<IProductDetails>;
   productList!: IProductDetails[];
 
   constructor() {
+	this.productList = [];
 	this.data.getMessages().then((data:IResponse<IProductDetails>) => {
-		console.log(data.data)
 		data.data.forEach(elem => {
 			this.productList.push(elem)
 		})

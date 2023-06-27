@@ -24,6 +24,6 @@ export class DataService {
   }
 
   public async getMessageById(id: number): Promise<IResponse<IProductDetails>> {
-    return (await (await fetch(`${this.url}/products/getProductsById/${id}`)).json()) ?? {};
+    return (await (await fetch(`${this.url}/products/getProductById/${id}`)).json()) ?? {};
   }
 }
