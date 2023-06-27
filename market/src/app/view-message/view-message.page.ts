@@ -3,6 +3,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonicModule, Platform } from '@ionic/angular';
 import { DataService, Message } from '../services/data.service';
+import { IProductDetails } from '../interfaces/IProductDetails';
+import { IResponse } from '../interfaces/IResponse';
 
 @Component({
   selector: 'app-view-message',
@@ -12,7 +14,7 @@ import { DataService, Message } from '../services/data.service';
   imports: [IonicModule, CommonModule],
 })
 export class ViewMessagePage implements OnInit {
-  public message!: Message;
+  public message!: IProductDetails;
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
@@ -20,8 +22,18 @@ export class ViewMessagePage implements OnInit {
   constructor() {}
 
   ngOnInit() {
+	this.message = {
+		id: 2,
+		name: '',
+		price: 2,
+		stock: 2,
+		pictures: []
+	};
     const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    this.message = this.data.getMessageById(parseInt(id, 10));
+    this.data.getMessageById(parseInt(id))
+	.then((elem:IResponse<IProductDetails>) => {
+		this.message = elem.data[0];
+	});
   }
 
   getBackButtonText() {
