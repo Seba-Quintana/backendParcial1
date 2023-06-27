@@ -22,13 +22,6 @@ export class ViewMessagePage implements OnInit {
   constructor() {}
 
   ngOnInit() {
-	this.message = {
-		id: 2,
-		name: '',
-		price: 2,
-		stock: 2,
-		pictures: []
-	};
     const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.data.getMessageById(parseInt(id))
 	.then((elem:IResponse<IProductDetails>) => {
